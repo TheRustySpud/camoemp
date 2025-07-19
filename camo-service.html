@@ -80,7 +80,7 @@
       border: 1px solid #3e3e66;
       border-radius: 10px;
       padding: 20px;
-      width: 240px;
+      width: 260px;
     }
 
     .purchase-options h2 {
@@ -111,19 +111,26 @@
       margin-bottom: 10px;
     }
 
-    .btn {
-      display: inline-block;
-      background: #9b30ff;
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 6px;
-      text-decoration: none;
+    /* Style your new buttons similarly but with your custom style */
+    .btn-custom {
+      border-radius: 10px;
+      background-color: #ffffff;
+      color: #000000;
+      padding: 5px 25px;
       font-weight: bold;
-      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      margin: 0 5px 5px 5px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #e0e0e0;
     }
 
-    .btn:hover {
-      background: #b765ff;
+    .btn-cart-open {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
     }
 
     .back-btn {
@@ -169,18 +176,44 @@
         <li>Abyss</li>
         <li>Nebula</li>
         <li>Citadelle PAP 1</li>
+        <li>Citadelle PAP 2</li>
+        <li>Citadelle PAP 3</li>
         <li>Liberty PAP 1</li>
+        <li>Liberty PAP 2</li>
+        <li>Liberty PAP 3</li>
         <li>Terminus PAP 1</li>
+        <li>Terminus PAP 2</li>
+        <li>Terminus PAP 3</li>
         <li>Tomb PAP 1</li>
+        <li>Tomb PAP 2</li>
+        <li>Tomb PAP 3</li>
         <li>One Trick</li>
         <li>Molten Obsidian</li>
+        <li>Mercury</li>
         <li>Constellation's End</li>
+        <li>Green & Gold</li>
         <li>MWII Gold</li>
+        <li>MWII Platinum</li>
+        <li>MWII Polyatomic</li>
         <li>MWII Orion</li>
+        <li>S5 Gold</li>
+        <li>S5 Platinum</li>
+        <li>S5 Diamond</li>
+        <li>S5 Crimson</li>
         <li>S5 Iridescent</li>
+        <li>S5 Top 250</li>
+        <li>Flow Thru</li>
+        <li>Ghoulie</li>
+        <li>Live, Laugh, Lava</li>
+        <li>Blue lightning</li>
+        <li>Royal Tiger</li>
+        <li>Windfall</li>
         <li>MW3 Borealis</li>
+        <li>MW3 Interstellar</li>
         <li>MW2 ZM Golden Ivory</li>
+        <li>MW2 ZM Spinal Husk</li>
         <li>MW2 ZM Arachnida</li>
+        <li>MW2 ZM Bioluminescent</li>
       </ul>
     </div>
 
@@ -189,22 +222,81 @@
       <div class="variant">
         <h3>1 Day</h3>
         <div class="price">$5.99</div>
-        <a href="#" onclick="buyProduct('product_1_day')" class="btn">Buy Now</a>
+        <button
+          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+          style="margin-right: 10px;"
+        >
+          Buy Variant
+        </button>
+        <button
+          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+        >
+          Add to Cart
+        </button>
       </div>
       <div class="variant">
         <h3>1 Week</h3>
         <div class="price">$9.99</div>
-        <a href="#" onclick="buyProduct('product_1_week')" class="btn">Buy Now</a>
+        <button
+          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+          style="margin-right: 10px;"
+        >
+          Buy Variant
+        </button>
+        <button
+          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+        >
+          Add to Cart
+        </button>
       </div>
       <div class="variant">
         <h3>1 Month</h3>
         <div class="price">$19.99</div>
-        <a href="#" onclick="buyProduct('product_1_month')" class="btn">Buy Now</a>
+        <button
+          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+          style="margin-right: 10px;"
+        >
+          Buy Variant
+        </button>
+        <button
+          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+        >
+          Add to Cart
+        </button>
       </div>
       <div class="variant">
         <h3>Lifetime</h3>
         <div class="price">$49.99</div>
-        <a href="#" onclick="buyProduct('product_lifetime')" class="btn">Buy Now</a>
+        <button
+          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+          style="margin-right: 10px;"
+        >
+          Buy Variant
+        </button>
+        <button
+          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
+          class="btn-custom"
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="btn-cart-open" >
+        <button
+          data-sellhub-open-cart-store-url="https://Camo-Empire.sellhub.cx"
+          class="btn-custom"
+          style="padding: 5px 15px; display: flex; align-items: center; gap: 5px;"
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:4px;margin-bottom:4px;"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          Cart
+        </button>
       </div>
     </div>
   </section>
@@ -214,34 +306,5 @@
   <footer>
     © 2025 Camo Empire. All sales final. No refunds. For testing purposes only.
   </footer>
-
-  <script>
-    async function buyProduct(productId) {
-      try {
-        const response = await fetch('https://api.sellauth.com/v1/checkout/session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer YOUR_API_KEY_HERE'
-          },
-          body: JSON.stringify({
-            product_id: productId,
-            success_url: window.location.href,
-            cancel_url: window.location.href
-          })
-        });
-
-        const data = await response.json();
-
-        if (data.url) {
-          window.location.href = data.url;
-        } else {
-          alert('Error: Could not create checkout session.');
-        }
-      } catch (err) {
-        alert('Failed to connect to Sellauth.');
-      }
-    }
-  </script>
 </body>
 </html>
