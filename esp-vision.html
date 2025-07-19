@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESP Vision - Camo Empire</title>
+  <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: #0b0b12;
+      color: #e0e0f8;
+    }
+
+    header {
+      background: linear-gradient(90deg, #3e006a, #5e00aa);
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px #ff66cc;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+    }
+
+    .product-details {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .product-details img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .product-details h2 {
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .product-details p {
+      font-size: 1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .variants {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .variant {
+      background: #1a1a2e;
+      border: 1px solid #3e3e66;
+      border-radius: 10px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .variant:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(155, 48, 255, 0.3);
+    }
+
+    .variant h3 {
+      color: #c084fc;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .variant .price {
+      font-size: 1.2rem;
+      color: #d4b5ff;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #9b30ff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #b765ff;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 20px auto;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      background: #0f0f1f;
+      padding: 20px;
+      color: #666;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" alt="Logo">
+    <h1>Camo Empire</h1>
+  </header>
+
+  <section class="product-details">
+    <img src="https://i.imgur.com/Wn0D0As.jpeg" alt="ESP Vision">
+    <h2>ESP Vision</h2>
+    <p>ESP Vision gives you the ultimate advantage in Call of Duty by letting you track enemies through walls, objects, and terrain. With customizable overlays, you can adjust visuals to your preference, including player names, distances, and item highlights. Undetected and optimized for performance, ESP Vision ensures you stay one step ahead of the competition.</p>
+
+    <div class="variants">
+      <div class="variant">
+        <h3>1 Day</h3>
+        <div class="price">$4.99</div>
+        <a href="#" class="btn">Purchase</a>
+      </div>
+      <div class="variant">
+        <h3>1 Week</h3>
+        <div class="price">$9.99</div>
+        <a href="#" class="btn">Purchase</a>
+      </div>
+      <div class="variant">
+        <h3>1 Month</h3>
+        <div class="price">$19.99</div>
+        <a href="#" class="btn">Purchase</a>
+      </div>
+      <div class="variant">
+        <h3>Lifetime</h3>
+        <div class="price">$49.99</div>
+        <a href="#" class="btn">Purchase</a>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-btn">Back to Products</a>
+  </section>
+
+  <footer>
+    © 2025 Camo Empire. All sales final. No refunds. For testing purposes only.
+  </footer>
+</body>
+</html>
