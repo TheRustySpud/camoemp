@@ -146,6 +146,43 @@
       font-size: 0.85rem;
     }
 
+    /* Trust Panel Styles */
+    .trust-panel {
+      background: #1a1a2e;
+      border: 1px solid #3e3e66;
+      border-radius: 10px;
+      padding: 20px;
+      width: 260px;
+      text-align: center;
+    }
+
+    .trust-panel h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .trust-item {
+      margin-bottom: 20px;
+    }
+
+    .trust-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .trust-item h3 {
+      color: #c084fc;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .trust-item p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -187,7 +224,7 @@
     }
 
     .modal-content .btn {
-      background: #9b30ff;
+      backgroundいの続き: : #9b30ff;
       color: #fff;
       padding: 6px 14px;
       border-radius: 6px;
@@ -292,6 +329,25 @@
         <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
       </div>
     </div>
+
+    <div class="trust-panel">
+      <h2>Why Choose Us?</h2>
+      <div class="trust-item">
+        <img src="https://play-lh.googleusercontent.com/2PS6w7uBztfuMys5fgodNkTwTOE6bLVB2cJYbu5GHlARAK36FzO5bUfMDP9cEJk__cE" alt="Stripe Logo">
+        <h3>Powered by Stripe</h3>
+        <p>Trusted payment processing with industry-leading security.</p>
+      </div>
+      <div class="trust-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828635.png" alt="Secure Payments">
+        <h3>Secure Payments</h3>
+        <p>Your transactions are protected with encryption.</p>
+      </div>
+      <div class="trust-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050222.png" alt="Instant Delivery">
+        <h3>Instant Delivery</h3>
+        <p>Receive your camos quickly after purchase.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Modal -->
@@ -316,9 +372,9 @@
     // Configuration object for easy link updates
     const purchaseLinks = {
       day: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03',
-      week: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03', // Update this for different link
-      month: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03', // Update this for different link
-      lifetime: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03' // Update this for different link
+      week: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03',
+      month: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03',
+      lifetime: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03'
     };
 
     // Update button links based on variant
