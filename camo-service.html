@@ -75,12 +75,19 @@
       list-style-type: disc;
     }
 
-    .purchase-options {
+    .purchase-trust-box {
       background: #1a1a2e;
       border: 1px solid #3e3e66;
       border-radius: 10px;
       padding: 20px;
-      width: 260px;
+      width: 400px;
+      max-width: 100%;
+      display: flex;
+      gap: 20px;
+    }
+
+    .purchase-options {
+      flex: 1;
     }
 
     .purchase-options h2 {
@@ -90,12 +97,17 @@
       text-align: center;
     }
 
+    .variants {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
     .variant {
       background: #2a2a40;
       border: 1px solid #4b4b6f;
       border-radius: 8px;
       padding: 12px;
-      margin-bottom: 15px;
       text-align: center;
     }
 
@@ -126,6 +138,46 @@
       background: #b765ff;
     }
 
+    .divider {
+      width: 1px;
+      background: #3e3e66;
+      align-self: stretch;
+    }
+
+    .trust-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .trust-items {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .trust-item {
+      text-align: center;
+    }
+
+    .trust-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .trust-item h3 {
+      color: #c084fc;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .trust-item p {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
     .back-btn {
       display: block;
       text-align: center;
@@ -144,43 +196,6 @@
       padding: 20px;
       color: #666;
       font-size: 0.85rem;
-    }
-
-    /* Trust Panel Styles */
-    .trust-panel {
-      background: #1a1a2e;
-      border: 1px solid #3e3e66;
-      border-radius: 10px;
-      padding: 20px;
-      width: 260px;
-      text-align: center;
-    }
-
-    .trust-panel h2 {
-      font-size: 1.5rem;
-      color: #ffffff;
-      margin-bottom: 15px;
-    }
-
-    .trust-item {
-      margin-bottom: 20px;
-    }
-
-    .trust-item img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 10px;
-    }
-
-    .trust-item h3 {
-      color: #c084fc;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-    }
-
-    .trust-item p {
-      font-size: 0.9rem;
-      color: #ccc;
     }
 
     /* Modal Styles */
@@ -224,7 +239,7 @@
     }
 
     .modal-content .btn {
-      backgroundいの続き: : #9b30ff;
+      background: #9b30ff;
       color: #fff;
       padding: 6px 14px;
       border-radius: 6px;
@@ -240,6 +255,20 @@
 
     .modal-content .btn:hover:not(:disabled) {
       background: #b765ff;
+    }
+
+    @media (max-width: 768px) {
+      .purchase-trust-box {
+        width: 100%;
+        flex-direction: column;
+      }
+      .divider {
+        display: none;
+      }
+      .trust-panel {
+        border-top: 1px solid #3e3e66;
+        padding-top: 20px;
+      }
     }
   </style>
 </head>
@@ -306,61 +335,54 @@
       </ul>
     </div>
 
-    <div class="purchase-options">
-      <h2>Purchase Options</h2>
-      <div class="variant">
-        <h3>1 Day</h3>
-        <div class="price">$5.99</div>
-        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+    <div class="purchase-trust-box">
+      <div class="purchase-options">
+        <h2>Purchase Options</h2>
+        <div class="variants">
+          <div class="variant">
+            <h3>1 Day</h3>
+            <div class="price">$5.99</div>
+            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+          </div>
+          <div class="variant">
+            <h3>1 Week</h3>
+            <div class="price">$9.99</div>
+            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+          </div>
+          <div class="variant">
+            <h3>1 Month</h3>
+            <div class="price">$19.99</div>
+            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+          </div>
+          <div class="variant">
+            <h3>Lifetime</h3>
+            <div class="price">$49.99</div>
+            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+          </div>
+        </div>
       </div>
-      <div class="variant">
-        <h3>1 Week</h3>
-        <div class="price">$9.99</div>
-        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-      </div>
-      <div class="variant">
-        <h3>1 Month</h3>
-        <div class="price">$19.99</div>
-        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-      </div>
-      <div class="variant">
-        <h3>Lifetime</h3>
-        <div class="price">$49.99</div>
-        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-      </div>
-    </div>
-
-    <div class="trust-panel">
-      <h2>Why Choose Us?</h2>
-      <div class="trust-item">
-        <img src="https://play-lh.googleusercontent.com/2PS6w7uBztfuMys5fgodNkTwTOE6bLVB2cJYbu5GHlARAK36FzO5bUfMDP9cEJk__cE" alt="Stripe Logo">
-        <h3>Powered by Stripe</h3>
-        <p>Trusted payment processing with industry-leading security.</p>
-      </div>
-      <div class="trust-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828635.png" alt="Secure Payments">
-        <h3>Secure Payments</h3>
-        <p>Your transactions are protected with encryption.</p>
-      </div>
-      <div class="trust-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050222.png" alt="Instant Delivery">
-        <h3>Instant Delivery</h3>
-        <p>Receive your camos quickly after purchase.</p>
+      <div class="divider"></div>
+      <div class="trust-panel">
+        <div class="trust-items">
+          <div class="trust-item">
+            <img src="https://play-lh.googleusercontent.com/2PS6w7uBztfuMys5fgodNkTwTOE6bLVB2cJYbu5GHlARAK36FzO5bUfMDP9cEJk__cE" alt="Stripe Logo">
+            <h3>Powered by Stripe</h3>
+            <p>Trusted payment processing with industry-leading security.</p>
+          </div>
+          <div class="trust-item">
+            <img src="https://static.vecteezy.com/system/resources/previews/017/177/781/non_2x/green-tick-check-mark-on-transparent-background-free-png.png" alt="Secure Payments">
+            <h3>Secure Payments</h3>
+            <p>Your transactions are protected with encryption.</p>
+          </div>
+          <div class="trust-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3050/3050222.png" alt="Instant Delivery">
+            <h3>Instant Delivery</h3>
+            <p>Receive your camos quickly after purchase.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- Modal -->
-  <div class="modal" id="purchaseModal">
-    <div class="modal-content">
-      <p>In order to receive your purchase you must open a ticket in our discord.</p>
-      <label>
-        <input type="checkbox" id="confirmCheckbox">
-        I understand how to obtain my purchase
-      </label>
-      <a href="#" id="confirmButton" class="btn" disabled>Proceed to Payment</a>
-    </div>
-  </div>
 
   <a href="index.html" class="back-btn">← Back to Products</a>
 
