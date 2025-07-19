@@ -120,7 +120,6 @@
       text-decoration: none;
       font-weight: bold;
       transition: background 0.3s ease;
-      cursor: pointer;
     }
 
     .btn:hover {
@@ -187,22 +186,22 @@
       margin-bottom: 20px;
     }
 
-    .modal-content button {
+    .modal-content .btn {
       background: #9b30ff;
       color: #fff;
-      padding: 8px 16px;
-      border: none;
+      padding: 6px 14px;
       border-radius: 6px;
-      cursor: pointer;
+      text-decoration: none;
       font-weight: bold;
+      transition: background 0.3s ease;
     }
 
-    .modal-content button:disabled {
+    .modal-content .btn:disabled {
       background: #666;
       cursor: not-allowed;
     }
 
-    .modal-content button:hover:not(:disabled) {
+    .modal-content .btn:hover:not(:disabled) {
       background: #b765ff;
     }
   </style>
@@ -275,22 +274,22 @@
       <div class="variant">
         <h3>1 Day</h3>
         <div class="price">$5.99</div>
-        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
+        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
       </div>
       <div class="variant">
         <h3>1 Week</h3>
         <div class="price">$9.99</div>
-        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
+        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
       </div>
       <div class="variant">
         <h3>1 Month</h3>
         <div class="price">$19.99</div>
-        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
+        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
       </div>
       <div class="variant">
         <h3>Lifetime</h3>
         <div class="price">$49.99</div>
-        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
+        <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
       </div>
     </div>
   </section>
@@ -303,7 +302,7 @@
         <input type="checkbox" id="confirmCheckbox">
         I understand how to obtain my purchase
       </label>
-      <button id="confirmButton" disabled>Proceed to Payment</button>
+      <a href="#" id="confirmButton" class="btn" disabled>Proceed to Payment</a>
     </div>
   </div>
 
@@ -343,16 +342,27 @@
         currentLink = button.getAttribute('data-link');
         modal.style.display = 'flex';
         confirmCheckbox.checked = false;
-        confirmButton.disabled = true;
+        confirmButton.setAttribute('disabled', 'true');
+        confirmButton.style.pointerEvents = 'none';
+        confirmButton.style.background = '#666';
       });
     });
 
     confirmCheckbox.addEventListener('change', () => {
-      confirmButton.disabled = !confirmCheckbox.checked;
+      if (confirmCheckbox.checked) {
+        confirmButton.removeAttribute('disabled');
+        confirmButton.style.pointerEvents = 'auto';
+        confirmButton.style.background = '#9b30ff';
+      } else {
+        confirmButton.setAttribute('disabled', 'true');
+        confirmButton.style.pointerEvents = 'none';
+        confirmButton.style.background = '#666';
+      }
     });
 
-    confirmButton.addEventListener('click', () => {
-      if (!confirmButton.disabled) {
+    confirmButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!confirmButton.hasAttribute('disabled')) {
         window.location.href = currentLink;
       }
     });
