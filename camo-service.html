@@ -111,26 +111,19 @@
       margin-bottom: 10px;
     }
 
-    /* Style your new buttons similarly but with your custom style */
-    .btn-custom {
-      border-radius: 10px;
-      background-color: #ffffff;
-      color: #000000;
-      padding: 5px 25px;
+    .btn {
+      display: inline-block;
+      background: #9b30ff;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
       font-weight: bold;
-      border: none;
-      cursor: pointer;
-      margin: 0 5px 5px 5px;
-      transition: background-color 0.3s ease;
-    }
-    .btn-custom:hover {
-      background-color: #e0e0e0;
+      transition: background 0.3s ease;
     }
 
-    .btn-cart-open {
-      display: flex;
-      justify-content: center;
-      margin-top: 15px;
+    .btn:hover {
+      background: #b765ff;
     }
 
     .back-btn {
@@ -222,81 +215,22 @@
       <div class="variant">
         <h3>1 Day</h3>
         <div class="price">$5.99</div>
-        <button
-          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-          style="margin-right: 10px;"
-        >
-          Buy Variant
-        </button>
-        <button
-          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-        >
-          Add to Cart
-        </button>
+        <a href="#" class="btn">Buy Now</a>
       </div>
       <div class="variant">
         <h3>1 Week</h3>
         <div class="price">$9.99</div>
-        <button
-          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-          style="margin-right: 10px;"
-        >
-          Buy Variant
-        </button>
-        <button
-          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-        >
-          Add to Cart
-        </button>
+        <a href="#" class="btn">Buy Now</a>
       </div>
       <div class="variant">
         <h3>1 Month</h3>
         <div class="price">$19.99</div>
-        <button
-          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-          style="margin-right: 10px;"
-        >
-          Buy Variant
-        </button>
-        <button
-          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-        >
-          Add to Cart
-        </button>
+        <a href="#" class="btn">Buy Now</a>
       </div>
       <div class="variant">
         <h3>Lifetime</h3>
         <div class="price">$49.99</div>
-        <button
-          data-sellhub-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-          style="margin-right: 10px;"
-        >
-          Buy Variant
-        </button>
-        <button
-          data-sellhub-cart-product="24907b66-7b15-43ef-8d15-5807d6752b5f"
-          class="btn-custom"
-        >
-          Add to Cart
-        </button>
-      </div>
-
-      <div class="btn-cart-open" >
-        <button
-          data-sellhub-open-cart-store-url="https://Camo-Empire.sellhub.cx"
-          class="btn-custom"
-          style="padding: 5px 15px; display: flex; align-items: center; gap: 5px;"
-          >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:4px;margin-bottom:4px;"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-          Cart
-        </button>
+        <a href="#" class="btn">Buy Now</a>
       </div>
     </div>
   </section>
@@ -306,7 +240,5 @@
   <footer>
     © 2025 Camo Empire. All sales final. No refunds. For testing purposes only.
   </footer>
-  
-  <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
 </body>
 </html>
