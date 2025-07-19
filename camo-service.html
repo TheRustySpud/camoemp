@@ -3,167 +3,309 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Unlock All Tool - Camo Empire</title>
-  <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgnoJDrRI/https/media.discordapp.net/attachments/1137907630543208548/1244850832912375849/image-removebg-preview_7.png?format=webp&quality=lossless&width=0&height=406" />
+  <title>Camo Services - Camo Empire</title>
+  <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0e0e1a;
-      color: white;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
     }
+
+    body {
+      background: #0b0b12;
+      color: #e0e0f8;
+    }
+
     header {
-      background-color: #9b30ff;
-      padding: 20px;
+      background: linear-gradient(90deg, #3e006a, #5e00aa);
+      padding: 15px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
     }
+
+    header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px #ff66cc;
+    }
+
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+      color: white;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
     }
+
     .product-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
       padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
+      gap: 40px;
     }
-    .product-details h2 {
-      font-size: 2rem;
+
+    .product-image-desc {
+      max-width: 500px;
+    }
+
+    .product-image-desc img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .product-image-desc p {
+      font-size: 1rem;
+      color: #ccc;
       margin-bottom: 10px;
     }
-    .product-details p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #ccc;
+
+    .product-image-desc ul {
+      padding-left: 20px;
+      color: #b6b6ff;
+      font-size: 0.95rem;
+      list-style-type: disc;
     }
+
     .purchase-options {
-      margin-top: 30px;
-    }
-    .variant {
-      background-color: #1e1e2f;
+      background: #1a1a2e;
+      border: 1px solid #3e3e66;
+      border-radius: 10px;
       padding: 20px;
-      border-radius: 15px;
-      margin: 15px 0;
-      transition: 0.3s;
+      width: 260px;
     }
-    .variant:hover {
-      background-color: #29293d;
-    }
-    .variant h3 {
-      margin: 0;
+
+    .purchase-options h2 {
       font-size: 1.5rem;
-    }
-    .price {
-      font-size: 1.3rem;
-      margin: 10px 0;
-      color: #9b30ff;
-    }
-    .btn {
-      background-color: #9b30ff;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #b14dff;
-    }
-    .back-btn {
-      display: inline-block;
-      margin: 20px;
-      padding: 8px 16px;
-      background-color: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    footer {
-      background-color: #111;
-      color: #888;
+      color: #ffffff;
+      margin-bottom: 15px;
       text-align: center;
+    }
+
+    .variant {
+      background: #2a2a40;
+      border: 1px solid #4b4b6f;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .variant h3 {
+      color: #c084fc;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .variant .price {
+      font-size: 1rem;
+      color: #d4b5ff;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #9b30ff;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #b765ff;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      background: #0f0f1f;
       padding: 20px;
-      font-size: 0.9rem;
-      margin-top: 40px;
+      color: #666;
+      font-size: 0.85rem;
     }
 
     /* Modal Styles */
-    #confirmBox {
+    .modal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000000cc;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 1000;
     }
 
-    #confirmBox > div {
-      background: #1e1e2f;
-      padding: 30px;
+    .modal-content {
+      background: #1a1a2e;
+      padding: 20px;
       border-radius: 10px;
-      max-width: 400px;
       text-align: center;
-      color: white;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid #3e3e66;
     }
 
-    #confirmBox button {
-      padding: 8px 20px;
-      border: none;
-      border-radius: 6px;
-      background: #9b30ff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
+    .modal-content p {
+      color: #e0e0f8;
+      margin-bottom: 20px;
+      font-size: 1rem;
     }
 
-    #confirmBox label {
+    .modal-content label {
+      color: #ccc;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       margin-bottom: 20px;
     }
+
+    .modal-content button {
+      background: #9b30ff;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .modal-content button:disabled {
+      background: #666;
+      cursor: not-allowed;
+    }
+
+    .modal-content button:hover:not(:disabled) {
+      background: #b765ff;
+    }
   </style>
 </head>
-
 <body>
   <header>
-    <h1>Unlock All Tool</h1>
+    <img src="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" alt="Logo">
+    <h1>Camo Empire</h1>
   </header>
 
   <section class="product-details">
-    <h2>Console Supported Unlock Tool</h2>
-    <p>This unlock tool works for PlayStation, Xbox, and PC. Instantly unlock all camos and weapons. Safe and tested.</p>
+    <div class="product-image-desc">
+      <img src="https://i.ytimg.com/vi/92ZV_KpNaVU/hq720.jpg" alt="Camo">
+      <p>Unlock exclusive Call of Duty camos instantly with our fast and secure console-supported camo service.</p>
+      <p>Available Camos:</p>
+      <ul>
+        <li>Gold Tiger</li>
+        <li>Mystic Gold</li>
+        <li>Diamond</li>
+        <li>Opal</li>
+        <li>Dark Spine</li>
+        <li>Afterlife</li>
+        <li>Dark Matter</li>
+        <li>Abyss</li>
+        <li>Nebula</li>
+        <li>Citadelle PAP 1</li>
+        <li>Citadelle PAP 2</li>
+        <li>Citadelle PAP 3</li>
+        <li>Liberty PAP 1</li>
+        <li>Liberty PAP 2</li>
+        <li>Liberty PAP 3</li>
+        <li>Terminus PAP 1</li>
+        <li>Terminus PAP 2</li>
+        <li>Terminus PAP 3</li>
+        <li>Tomb PAP 1</li>
+        <li>Tomb PAP 2</li>
+        <li>Tomb PAP 3</li>
+        <li>One Trick</li>
+        <li>Molten Obsidian</li>
+        <li>Mercury</li>
+        <li>Constellation's End</li>
+        <li>Green & Gold</li>
+        <li>MWII Gold</li>
+        <li>MWII Platinum</li>
+        <li>MWII Polyatomic</li>
+        <li>MWII Orion</li>
+        <li>S5 Gold</li>
+        <li>S5 Platinum</li>
+        <li>S5 Diamond</li>
+        <li>S5 Crimson</li>
+        <li>S5 Iridescent</li>
+        <li>S5 Top 250</li>
+        <li>Flow Thru</li>
+        <li>Ghoulie</li>
+        <li>Live, Laugh, Lava</li>
+        <li>Blue lightning</li>
+        <li>Royal Tiger</li>
+        <li>Windfall</li>
+        <li>MW3 Borealis</li>
+        <li>MW3 Interstellar</li>
+        <li>MW2 ZM Golden Ivory</li>
+        <li>MW2 ZM Spinal Husk</li>
+        <li>MW2 ZM Arachnida</li>
+        <li>MW2 ZM Bioluminescent</li>
+      </ul>
+    </div>
 
     <div class="purchase-options">
       <h2>Purchase Options</h2>
       <div class="variant">
         <h3>1 Day</h3>
         <div class="price">$5.99</div>
-        <button class="btn" onclick="confirmPurchase('https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03')">Buy Now</button>
+        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
       </div>
       <div class="variant">
         <h3>1 Week</h3>
         <div class="price">$9.99</div>
-        <button class="btn" onclick="confirmPurchase('https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03')">Buy Now</button>
+        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
       </div>
       <div class="variant">
         <h3>1 Month</h3>
         <div class="price">$19.99</div>
-        <button class="btn" onclick="confirmPurchase('https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03')">Buy Now</button>
+        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
       </div>
       <div class="variant">
         <h3>Lifetime</h3>
         <div class="price">$49.99</div>
-        <button class="btn" onclick="confirmPurchase('https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03')">Buy Now</button>
+        <button class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</button>
       </div>
     </div>
   </section>
+
+  <!-- Modal -->
+  <div class="modal" id="purchaseModal">
+    <div class="modal-content">
+      <p>In order to receive your purchase you must open a ticket in our discord.</p>
+      <label>
+        <input type="checkbox" id="confirmCheckbox">
+        I understand how to obtain my purchase
+      </label>
+      <button id="confirmButton" disabled>Proceed to Payment</button>
+    </div>
+  </div>
 
   <a href="index.html" class="back-btn">← Back to Products</a>
 
@@ -171,39 +313,56 @@
     © 2025 Camo Empire. All sales final. No refunds. For testing purposes only.
   </footer>
 
-  <!-- Confirmation Modal -->
-  <div id="confirmBox">
-    <div>
-      <h3>Before You Continue</h3>
-      <p>In order to receive your purchase you must open a ticket in our Discord.</p>
-      <label>
-        <input type="checkbox" id="ackCheckbox">
-        I understand how to obtain my purchase
-      </label>
-      <button onclick="proceed()">Continue</button>
-    </div>
-  </div>
-
-  <!-- SellHub Embed -->
-  <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
-
-  <!-- Confirmation Script -->
   <script>
-    let redirectUrl = "";
+    // Configuration object for easy link updates
+    const purchaseLinks = {
+      day: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03',
+      week: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03', // Update this for different link
+      month: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03', // Update this for different link
+      lifetime: 'https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03' // Update this for different link
+    };
 
-    function confirmPurchase(url) {
-      redirectUrl = url;
-      document.getElementById('confirmBox').style.display = 'flex';
-    }
+    // Update button links based on variant
+    document.querySelectorAll('.variant').forEach((variant, index) => {
+      const button = variant.querySelector('.btn');
+      if (index === 0) button.setAttribute('data-link', purchaseLinks.day);
+      if (index === 1) button.setAttribute('data-link', purchaseLinks.week);
+      if (index === 2) button.setAttribute('data-link', purchaseLinks.month);
+      if (index === 3) button.setAttribute('data-link', purchaseLinks.lifetime);
+    });
 
-    function proceed() {
-      const checkbox = document.getElementById('ackCheckbox');
-      if (checkbox.checked) {
-        window.location.href = redirectUrl;
-      } else {
-        alert("Please confirm you understand how to obtain your purchase.");
+    // Modal functionality
+    const modal = document.getElementById('purchaseModal');
+    const confirmCheckbox = document.getElementById('confirmCheckbox');
+    const confirmButton = document.getElementById('confirmButton');
+    let currentLink = '';
+
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentLink = button.getAttribute('data-link');
+        modal.style.display = 'flex';
+        confirmCheckbox.checked = false;
+        confirmButton.disabled = true;
+      });
+    });
+
+    confirmCheckbox.addEventListener('change', () => {
+      confirmButton.disabled = !confirmCheckbox.checked;
+    });
+
+    confirmButton.addEventListener('click', () => {
+      if (!confirmButton.disabled) {
+        window.location.href = currentLink;
       }
-    }
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
