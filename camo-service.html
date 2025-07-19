@@ -1,12 +1,144 @@
-<!-- ... (keep your <head> content the same) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unlock All Tool - Camo Empire</title>
+  <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgnoJDrRI/https/media.discordapp.net/attachments/1137907630543208548/1244850832912375849/image-removebg-preview_7.png?format=webp&quality=lossless&width=0&height=406" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0e0e1a;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #9b30ff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .product-details {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    .product-details h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .product-details p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    .purchase-options {
+      margin-top: 30px;
+    }
+    .variant {
+      background-color: #1e1e2f;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 15px 0;
+      transition: 0.3s;
+    }
+    .variant:hover {
+      background-color: #29293d;
+    }
+    .variant h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .price {
+      font-size: 1.3rem;
+      margin: 10px 0;
+      color: #9b30ff;
+    }
+    .btn {
+      background-color: #9b30ff;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #b14dff;
+    }
+    .back-btn {
+      display: inline-block;
+      margin: 20px;
+      padding: 8px 16px;
+      background-color: #333;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    footer {
+      background-color: #111;
+      color: #888;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    /* Modal Styles */
+    #confirmBox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000000cc;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #confirmBox > div {
+      background: #1e1e2f;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      color: white;
+    }
+
+    #confirmBox button {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #9b30ff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #confirmBox label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
 
 <body>
   <header>
-    <!-- ... your existing header ... -->
+    <h1>Unlock All Tool</h1>
   </header>
 
   <section class="product-details">
-    <!-- ... your product details ... -->
+    <h2>Console Supported Unlock Tool</h2>
+    <p>This unlock tool works for PlayStation, Xbox, and PC. Instantly unlock all camos and weapons. Safe and tested.</p>
 
     <div class="purchase-options">
       <h2>Purchase Options</h2>
@@ -40,18 +172,22 @@
   </footer>
 
   <!-- Confirmation Modal -->
-  <div id="confirmBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; justify-content:center; align-items:center; z-index:9999;">
-    <div style="background:#1e1e2f; padding:30px; border-radius:10px; max-width:400px; text-align:center; color:white;">
-      <h3 style="margin-bottom:15px;">Before You Continue</h3>
-      <p style="margin-bottom:15px;">In order to receive your purchase you must open a ticket in our Discord.</p>
-      <label style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:20px;">
+  <div id="confirmBox">
+    <div>
+      <h3>Before You Continue</h3>
+      <p>In order to receive your purchase you must open a ticket in our Discord.</p>
+      <label>
         <input type="checkbox" id="ackCheckbox">
         I understand how to obtain my purchase
       </label>
-      <button onclick="proceed()" style="padding:8px 20px; border:none; border-radius:6px; background:#9b30ff; color:white; font-weight:bold; cursor:pointer;">Continue</button>
+      <button onclick="proceed()">Continue</button>
     </div>
   </div>
 
+  <!-- SellHub Embed -->
+  <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
+
+  <!-- Confirmation Script -->
   <script>
     let redirectUrl = "";
 
