@@ -325,6 +325,341 @@
         <li>Ghoulie</li>
         <li>Live, Laugh, Lava</li>
         <li>Blue lightning</li>
+        <li>R探索
+
+System: I notice that all the `data-link` attributes in your HTML point to the same Stripe URL (`https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03`). This means that regardless of which "Buy Now" button is clicked, the redirect will always go to the same Stripe payment page. If you intend for each purchase option (1 Day, 1 Week, 1 Month, Lifetime) to have unique payment links, you should update the `data-link` attributes in the HTML for each variant to point to the correct Stripe URLs. If you have the correct URLs, I can help you integrate them.
+
+Here is the corrected code with the JavaScript refined to ensure the confirm button redirects reliably to the Stripe link stored in `currentLink`. The modal text remains unchanged as requested: "Please confirm you understand that all sales are final and no refunds will be issued."
+
+### Corrected Code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camo Services - Camo Empire</title>
+  <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: #0b0b12;
+      color: #e0e0f8;
+    }
+
+    header {
+      background: linear-gradient(90deg, #3e006a, #5e00aa);
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px #ff66cc;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+    }
+
+    .product-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      gap: 40px;
+    }
+
+    .product-image-desc {
+      max-width: 500px;
+    }
+
+    .product-image-desc img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .product-image-desc p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .product-image-desc ul {
+      padding-left: 20px;
+      color: #b6b6ff;
+      font-size: 0.95rem;
+      list-style-type: disc;
+    }
+
+    .purchase-trust-box {
+      background: #1a1a2e;
+      border: 1px solid #3e3e66;
+      border-radius: 10px;
+      padding: 20px;
+      width: 400px;
+      max-width: 100%;
+      display: flex;
+      gap: 20px;
+      margin-left: 60px;
+      margin-top: 20px;
+    }
+
+    .purchase-options {
+      flex: 1;
+    }
+
+    .purchase-options h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .variants {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .variant {
+      background: #2a2a40;
+      border: 1px solid #4b4b6f;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .variant h3 {
+      color: #c084fc;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .variant .price {
+      font-size: 1rem;
+      color: #d4b5ff;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #9b30ff;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #b765ff;
+    }
+
+    .divider {
+      width: 1px;
+      background: #3e3e66;
+      align-self: stretch;
+    }
+
+    .trust-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .trust-items {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .trust-item {
+      text-align: center;
+    }
+
+    .trust-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .trust-item h3 {
+      color: #c084fc;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .trust-item p {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      background: #0f0f1f;
+      padding: 20px;
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #1a1a2e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid #3e3e66;
+    }
+
+    .modal-content p {
+      color: #e0e0f8;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .modal-content label {
+      color: #ccc;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .modal-content .btn {
+      background: #9b30ff;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .modal-content .btn:disabled {
+      background: #666;
+      cursor: not-allowed;
+    }
+
+    .modal-content .btn:hover:not(:disabled) {
+      background: #b765ff;
+    }
+
+    @media (max-width: 768px) {
+      .purchase-trust-box {
+        width: 100%;
+        flex-direction: column;
+      }
+      .divider {
+        display: none;
+      }
+      .trust-panel {
+        border-top: 1px solid #3e3e66;
+        padding-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" alt="Logo">
+    <h1>Camo Empire</h1>
+  </header>
+
+  <section class="product-details">
+    <div class="product-image-desc">
+      <img src="https://i.ytimg.com/vi/92ZV_KpNaVU/hq720.jpg" alt="Camo">
+      <p>Unlock exclusive Call of Duty camos instantly with our fast and secure console-supported camo service.</p>
+      <p>Available Camos:</p>
+      <ul>
+        <li>Gold Tiger</li>
+        <li>Mystic Gold</li>
+        <li>Diamond</li>
+        <li>Opal</li>
+        <li>Dark Spine</li>
+        <li>Afterlife</li>
+        <li>Dark Matter</li>
+        <li>Abyss</li>
+        <li>Nebula</li>
+        <li>Citadelle PAP 1</li>
+        <li>Citadelle PAP 2</li>
+        <li>Citadelle PAP 3</li>
+        <li>Liberty PAP 1</li>
+        <li>Liberty PAP 2</li>
+        <li>Liberty PAP 3</li>
+        <li>Terminus PAP 1</li>
+        <li>Terminus PAP 2</li>
+        <li>Terminus PAP 3</li>
+        <li>Tomb PAP 1</li>
+        <li>Tomb PAP 2</li>
+        <li>Tomb PAP 3</li>
+        <li>One Trick</li>
+        <li>Molten Obsidian</li>
+        <li>Mercury</li>
+        <li>Constellation's End</li>
+        <li>Green & Gold</li>
+        <li>MWII Gold</li>
+        <li>MWII Platinum</li>
+        <li>MWII Polyatomic</li>
+        <li>MWII Orion</li>
+        <li>S5 Gold</li>
+        <li>S5 Platinum</li>
+        <li>S5 Diamond</li>
+        <li>S5 Crimson</li>
+        <li>S5 Iridescent</li>
+        <li>S5 Top 250</li>
+        <li>Flow Thru</li>
+        <li>Ghoulie</li>
+        <li>Live, Laugh, Lava</li>
+        <li>Blue lightning</li>
         <li>Royal Tiger</li>
         <li>Windfall</li>
         <li>MW3 Borealis</li>
@@ -387,7 +722,6 @@
 
   <a href="index.html" class="back-btn">← Back to Products</a>
 
-  <!-- Added Modal HTML -->
   <div class="modal" id="purchaseModal">
     <div class="modal-content">
       <p>Please confirm you understand that all sales are final and no refunds will be issued.</p>
@@ -415,46 +749,56 @@
       button.addEventListener('click', (e) => {
         e.preventDefault();
         currentLink = button.getAttribute('data-link');
-        if (modal) {
+        if (modal && currentLink) {
           modal.style.display = 'flex';
           confirmCheckbox.checked = false;
           confirmButton.setAttribute('disabled', 'true');
           confirmButton.style.pointerEvents = 'none';
           confirmButton.style.background = '#666';
         } else {
-          // Fallback: If modal is missing, go directly to the link
-          window.location.href = currentLink;
+          // Fallback: If modal is missing or no link, redirect directly
+          if (currentLink) {
+            window.location.href = currentLink;
+          }
         }
       });
     });
 
     // Enable/disable confirm button based on checkbox
-    confirmCheckbox.addEventListener('change', () => {
-      if (confirmCheckbox.checked) {
-        confirmButton.removeAttribute('disabled');
-        confirmButton.style.pointerEvents = 'auto';
-        confirmButton.style.background = '#9b30ff';
-      } else {
-        confirmButton.setAttribute('disabled', 'true');
-        confirmButton.style.pointerEvents = 'none';
-        confirmButton.style.background = '#666';
-      }
-    });
+    if (confirmCheckbox) {
+      confirmCheckbox.addEventListener('change', () => {
+        if (confirmCheckbox.checked) {
+          confirmButton.removeAttribute('disabled');
+          confirmButton.style.pointerEvents = 'auto';
+          confirmButton.style.background = '#9b30ff';
+        } else {
+          confirmButton.setAttribute('disabled', 'true');
+          confirmButton.style.pointerEvents = 'none';
+          confirmButton.style.background = '#666';
+        }
+      });
+    }
 
     // Confirm button redirects to the purchase link
-    confirmButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!confirmButton.hasAttribute('disabled')) {
-        window.location.href = currentLink;
-      }
-    });
+    if (confirmButton) {
+      confirmButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent event bubbling to modal background
+        if (!confirmButton.hasAttribute('disabled') && currentLink) {
+          window.location.href = currentLink;
+          modal.style.display = 'none'; // Close modal after redirect
+        }
+      });
+    }
 
     // Close modal when clicking outside
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
   </script>
 </body>
 </html>
