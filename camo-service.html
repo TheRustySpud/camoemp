@@ -329,7 +329,6 @@
         <li>Windfall</li>
         <li>MW3 Borealis</li>
         <li>MW3 Interstellar</li>
-        < weaving
         <li>MW2 ZM Golden Ivory</li>
         <li>MW2 ZM Spinal Husk</li>
         <li>MW2 ZM Arachnida</li>
@@ -411,19 +410,22 @@
     let currentLink = '';
 
     // Add click event listeners to all Buy Now buttons
-    document.querySelectorAll('.btn').forEach(button => {
+    document.querySelectorAll('.btn:not(#confirmButton)').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
         currentLink = button.getAttribute('data-link');
+        console.log('Buy Now clicked, currentLink:', currentLink); // Debug log
         if (modal && currentLink) {
           modal.style.display = 'flex';
           confirmCheckbox.checked = false;
           confirmButton.setAttribute('disabled', 'true');
           confirmButton.style.pointerEvents = 'none';
           confirmButton.style.background = '#666';
+          confirmButton.setAttribute('href', currentLink); // Set href for fallback
         } else {
           // Fallback: If modal is missing or no link, redirect directly
           if (currentLink) {
+            console.log('Fallback redirect to:', currentLink); // Debug log
             window.location.href = currentLink;
           }
         }
@@ -433,6 +435,7 @@
     // Enable/disable confirm button based on checkbox
     if (confirmCheckbox) {
       confirmCheckbox.addEventListener('change', () => {
+        console.log('Checkbox state:', confirmCheckbox.checked); // Debug log
         if (confirmCheckbox.checked) {
           confirmButton.removeAttribute('disabled');
           confirmButton.style.pointerEvents = 'auto';
@@ -450,9 +453,10 @@
       confirmButton.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation(); // Prevent event bubbling to modal background
+        console.log('Confirm button clicked, redirecting to:', currentLink); // Debug log
         if (!confirmButton.hasAttribute('disabled') && currentLink) {
-          window.location.href = currentLink;
-          modal.style.display = 'none'; // Close modal after redirect
+          modal.style.display = 'none'; // Close modal
+          window.location.href = currentLink; // Redirect to Stripe
         }
       });
     }
@@ -461,6 +465,7 @@
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
+          console.log('Modal closed by clicking outside'); // Debug log
           modal.style.display = 'none';
         }
       });
