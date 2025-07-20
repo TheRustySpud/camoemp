@@ -283,13 +283,14 @@
         padding: 10px;
       }
 
+      /* ADDED: Make header text and logo exactly match index.html mobile */
       header h1 {
-        font-size: 2rem; /* Updated to match index.html */
+        font-size: 2rem !important;
       }
 
       header img {
-        width: 40px;
-        height: 40px;
+        width: 40px !important;
+        height: 40px !important;
       }
 
       .product-details {
@@ -392,13 +393,14 @@
 
     /* Extra small screens (e.g., < 480px) */
     @media (max-width: 480px) {
+      /* ADDED: Make header text and logo exactly match index.html mobile */
       header h1 {
-        font-size: 2rem; /* Updated to match index.html */
+        font-size: 2rem !important;
       }
 
       header img {
-        width: 35px;
-        height: 35px;
+        width: 40px !important;
+        height: 40px !important;
       }
 
       .product-image-desc img {
@@ -564,84 +566,54 @@
       <p>To receive your purchase you must open a ticket in our discord server.</p>
       <a href="https://discord.gg/zx2mg3vfdS" class="discord-link">Please click here to join our discord server before buying.</a>
       <label>
-        <input type="checkbox" id="confirmCheckbox">
-        I understand how to receive my purchase.
+        <input type="checkbox" id="discordCheck" />
+        I confirm that I have joined the discord server.
       </label>
-      <a href="#" class="btn" id="confirmButton" disabled>Confirm Purchase</a>
+      <button class="btn" id="confirmBtn" disabled>Confirm</button>
     </div>
   </div>
 
   <footer>
-    © 2025 Camo Empire. All sales final. No refunds. For testing purposes only.
+    &copy; 2025 Camo Empire. All rights reserved.
   </footer>
 
   <script>
-    // Modal functionality
+    // Modal logic for purchase confirmation
     const modal = document.getElementById('purchaseModal');
-    const confirmCheckbox = document.getElementById('confirmCheckbox');
-    const confirmButton = document.getElementById('confirmButton');
-    let currentLink = '';
+    const discordCheck = document.getElementById('discordCheck');
+    const confirmBtn = document.getElementById('confirmBtn');
 
-    // Add click event listeners to all Buy Now buttons
-    document.querySelectorAll('.btn:not(#confirmButton)').forEach(button => {
+    document.querySelectorAll('.btn[data-link]').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        currentLink = button.getAttribute('data-link');
-        console.log('Buy Now clicked, currentLink:', currentLink);
-        if (modal && currentLink) {
-          modal.style.display = 'flex';
-          confirmCheckbox.checked = false;
-          confirmButton.setAttribute('disabled', 'true');
-          confirmButton.style.pointerEvents = 'none';
-          confirmButton.style.background = '#666';
-          confirmButton.setAttribute('href', currentLink);
-        } else {
-          if (currentLink) {
-            console.log('Fallback redirect to:', currentLink);
-            window.location.href = currentLink;
-          }
-        }
+        modal.style.display = 'flex';
+
+        // Store the link in confirm button dataset
+        confirmBtn.dataset.link = button.dataset.link;
       });
     });
 
-    // Enable/disable confirm button based on checkbox
-    if (confirmCheckbox) {
-      confirmCheckbox.addEventListener('change', () => {
-        console.log('Checkbox state:', confirmCheckbox.checked);
-        if (confirmCheckbox.checked) {
-          confirmButton.removeAttribute('disabled');
-          confirmButton.style.pointerEvents = 'auto';
-          confirmButton.style.background = '#9b30ff';
-        } else {
-          confirmButton.setAttribute('disabled', 'true');
-          confirmButton.style.pointerEvents = 'none';
-          confirmButton.style.background = '#666';
-        }
-      });
-    }
+    discordCheck.addEventListener('change', () => {
+      confirmBtn.disabled = !discordCheck.checked;
+    });
 
-    // Confirm button redirects to the purchase link
-    if (confirmButton) {
-      confirmButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Confirm button clicked, redirecting to:', currentLink);
-        if (!confirmButton.hasAttribute('disabled') && currentLink) {
-          modal.style.display = 'none';
-          window.location.href = currentLink;
-        }
-      });
-    }
+    confirmBtn.addEventListener('click', () => {
+      if (!confirmBtn.disabled && confirmBtn.dataset.link) {
+        window.open(confirmBtn.dataset.link, '_blank');
+        modal.style.display = 'none';
+        discordCheck.checked = false;
+        confirmBtn.disabled = true;
+      }
+    });
 
-    // Close modal when clicking outside
-    if (modal) {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          console.log('Modal closed by clicking outside');
-          modal.style.display = 'none';
-        }
-      });
-    }
+    // Close modal on outside click
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        discordCheck.checked = false;
+        confirmBtn.disabled = true;
+      }
+    });
   </script>
 </body>
 </html>
