@@ -573,7 +573,7 @@
             <div class="variant">
               <h3>1 Day</h3>
               <div class="price">$6</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/3cI9AU4VDdWe6to7oH7IY0j" data-product="Unlock Tool - 1 Day">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/test_aFa8wQ0FnaK2g3Y10j7IY00" data-product="Unlock Tool - 1 Day">Buy Now</a>
             </div>
             <div class="variant">
               <h3>1 Week</h3>
@@ -667,7 +667,7 @@
         const product = confirmBtn.dataset.product;
         // Append order ID and product to the Stripe link as query parameters
         const redirectUrl = `${confirmBtn.dataset.link}?client_reference_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
-        window.open(redirectUrl, '_blank');
+        window.location.href = redirectUrl; // Changed to same-tab redirect
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
