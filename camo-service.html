@@ -7,7 +7,6 @@
   <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    /* Unchanged styles from your provided Camo-services.html */
     * {
       margin: 0;
       padding: 0;
@@ -666,11 +665,10 @@
   </footer>
 
   <script>
-    // Function to generate a unique order ID
+    // Function to generate a unique order ID with CE- followed by 5 random digits
     function generateOrderId() {
-      const timestamp = Date.now();
-      const random = Math.random().toString(36).substring(2, 8);
-      return `CE-${timestamp}-${random}`;
+      const randomDigits = Math.floor(10000 + Math.random() * 90000);
+      return `CE-${randomDigits}`;
     }
 
     // Modal logic for purchase confirmation
@@ -681,24 +679,39 @@
     document.querySelectorAll('.btn[data-link]').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
+        modal.style.display = 'flex';
         // Store the link and product in confirm button dataset
         confirmBtn.dataset.link = button.dataset.link;
         confirmBtn.dataset.product = button.dataset.product;
-        modal.style.display = 'flex';
+        console.log('Buy Now clicked:', {
+          link: button.dataset.link,
+          product: button.dataset.product
+        });
       });
     });
 
     discordCheck.addEventListener('change', () => {
       confirmBtn.disabled = !discordCheck.checked;
+      console.log('Checkbox changed:', { checked: discordCheck.checked });
     });
 
     confirmBtn.addEventListener('click', () => {
       if (!confirmBtn.disabled && confirmBtn.dataset.link) {
         const orderId = generateOrderId();
         const product = confirmBtn.dataset.product;
+        // Store orderId and product in localStorage as a fallback
+        localStorage.setItem('lastOrderId', orderId);
+        localStorage.setItem('lastProduct', product);
         // Append order ID and product to the Stripe link as query parameters
-        const redirectUrl = `${confirmBtn.dataset.link}?order_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
-        window.open(redirectUrl, '_blank');
+        const redirectUrl = `${confirmBtn.dataset.link}?client_reference_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
+        console.log('Redirecting to Stripe Checkout:', {
+          url: redirectUrl,
+          orderId: orderId,
+          product: product,
+          localStorageOrderId: localStorage.getItem('lastOrderId'),
+          localStorageProduct: localStorage.getItem('lastProduct')
+        });
+        window.location.href = redirectUrl; // Same-tab redirect
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
@@ -711,6 +724,7 @@
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
+        console.log('Modal closed by outside click');
       }
     });
   </script>
