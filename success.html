@@ -247,11 +247,16 @@
   </footer>
 
   <script>
-    // Function to get query parameters from URL
+    // Function to get query parameters from URL and localStorage fallback for orderId
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
+      let orderId = params.get('order_id') || localStorage.getItem('lastOrderId') || 'N/A';
+      // Validate orderId to avoid using invalid values like {CLIENT_REFERENCE_ID}
+      if (orderId.includes('{CLIENT_REFERENCE_ID}')) {
+        orderId = localStorage.getItem('lastOrderId') || 'N/A';
+      }
       return {
-        orderId: params.get('order_id') || 'N/A',
+        orderId: orderId,
         product: params.get('product') || 'N/A'
       };
     }
@@ -282,6 +287,8 @@
 
         if (!response.ok) {
           console.error('Failed to send webhook:', response.statusText);
+        } else {
+          console.log('Webhook sent successfully');
         }
       } catch (error) {
         console.error('Error sending webhook:', error);
@@ -291,11 +298,20 @@
     // Display order details and send to Discord webhook on page load
     window.addEventListener('load', () => {
       const { orderId, product } = getQueryParams();
+      console.log('Success page loaded:', {
+        queryOrderId: new URLSearchParams(window.location.search).get('order_id'),
+        localStorageOrderId: localStorage.getItem('lastOrderId'),
+        finalOrderId: orderId,
+        product: product
+      });
       document.getElementById('order-id').textContent = orderId;
       document.getElementById('product-name').textContent = product;
       if (orderId !== 'N/A' && product !== 'N/A') {
         sendToDiscordWebhook(orderId, product);
       }
+      // Clear localStorage to prevent reuse
+      localStorage.removeItem('lastOrderId');
+      localStorage.removeItem('lastProduct');
     });
   </script>
 </body>
