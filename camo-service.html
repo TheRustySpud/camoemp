@@ -7,6 +7,7 @@
   <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
+    /* Unchanged styles from your provided Camo-services.html */
     * {
       margin: 0;
       padding: 0;
@@ -613,12 +614,12 @@
             <div class="variant">
               <h3>2 Camos on ALL GUNS</h3>
               <div class="price">$10</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/8x27sM2NvdWe050cJ17IY08">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/8x27sM2NvdWe050cJ17IY08" data-product="2 Camos on ALL GUNS">Buy Now</a>
             </div>
             <div class="variant">
               <h3>8 Camos on ALL GUNS</h3>
               <div class="price">$20</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/4gMaEY73LdWe0508sL7IY09">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/4gMaEY73LdWe0508sL7IY09" data-product="8 Camos on ALL GUNS">Buy Now</a>
             </div>
           </div>
         </div>
@@ -665,6 +666,13 @@
   </footer>
 
   <script>
+    // Function to generate a unique order ID
+    function generateOrderId() {
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 8);
+      return `CE-${timestamp}-${random}`;
+    }
+
     // Modal logic for purchase confirmation
     const modal = document.getElementById('purchaseModal');
     const discordCheck = document.getElementById('discordCheck');
@@ -673,10 +681,10 @@
     document.querySelectorAll('.btn[data-link]').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        modal.style.display = 'flex';
-
-        // Store the link in confirm button dataset
+        // Store the link and product in confirm button dataset
         confirmBtn.dataset.link = button.dataset.link;
+        confirmBtn.dataset.product = button.dataset.product;
+        modal.style.display = 'flex';
       });
     });
 
@@ -686,7 +694,11 @@
 
     confirmBtn.addEventListener('click', () => {
       if (!confirmBtn.disabled && confirmBtn.dataset.link) {
-        window.open(confirmBtn.dataset.link, '_blank');
+        const orderId = generateOrderId();
+        const product = confirmBtn.dataset.product;
+        // Append order ID and product to the Stripe link as query parameters
+        const redirectUrl = `${confirmBtn.dataset.link}?order_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
+        window.open(redirectUrl, '_blank');
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
