@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Camo Services - Camo Empire</title>
+  <title>External Chair - Camo Empire</title>
   <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
@@ -575,22 +575,22 @@
             <div class="variant">
               <h3>1 Day</h3>
               <div class="price">$7</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/28EaEYafXdWe194gZh7IY0a">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/28EaEYafXdWe194gZh7IY0a" data-product="External Chair - 1 Day">Buy Now</a>
             </div>
             <div class="variant">
               <h3>1 Week</h3>
               <div class="price">$18</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/8x29AU73LaK23hc8sL7IY0b">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/8x29AU73LaK23hc8sL7IY0b" data-product="External Chair - 1 Week">Buy Now</a>
             </div>
             <div class="variant">
               <h3>1 Month</h3>
               <div class="price">$34</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/6oU14o1Jr8BUaJE10j7IY0c">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/6oU14o1Jr8BUaJE10j7IY0c" data-product="External Chair - 1 Month">Buy Now</a>
             </div>
             <div class="variant">
               <h3>Lifetime</h3>
               <div class="price">$120</div>
-              <a href="#" class="btn" data-link="https://buy.stripe.com/9B6bJ22NvdWe9FAbEX7IY0d">Buy Now</a>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/9B6bJ22NvdWe9FAbEX7IY0d" data-product="External Chair - Lifetime">Buy Now</a>
             </div>
           </div>
         </div>
@@ -637,6 +637,13 @@
   </footer>
 
   <script>
+    // Function to generate a unique order ID
+    function generateOrderId() {
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 8);
+      return `CE-${timestamp}-${random}`;
+    }
+
     // Modal logic for purchase confirmation
     const modal = document.getElementById('purchaseModal');
     const discordCheck = document.getElementById('discordCheck');
@@ -646,9 +653,9 @@
       button.addEventListener('click', (e) => {
         e.preventDefault();
         modal.style.display = 'flex';
-
-        // Store the link in confirm button dataset
+        // Store the link and product in confirm button dataset
         confirmBtn.dataset.link = button.dataset.link;
+        confirmBtn.dataset.product = button.dataset.product;
       });
     });
 
@@ -658,7 +665,11 @@
 
     confirmBtn.addEventListener('click', () => {
       if (!confirmBtn.disabled && confirmBtn.dataset.link) {
-        window.open(confirmBtn.dataset.link, '_blank');
+        const orderId = generateOrderId();
+        const product = confirmBtn.dataset.product;
+        // Append order ID and product to the Stripe link as query parameters
+        const redirectUrl = `${confirmBtn.dataset.link}?order_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
+        window.open(redirectUrl, '_blank');
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
