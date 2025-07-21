@@ -229,12 +229,13 @@
     <p>Thank You for Your Purchase!</p>
     <div class="instruction-box">
       <h3>Next Steps</h3>
+      <p id="order-details">Your Order ID: <span id="order-id">N/A</span> | Product Purchased: <span id="product-name">N/A</span></p>
       <p>Thank you for choosing Camo Empire! To receive your purchased items, please follow these steps:</p>
       <p>1. Join our Discord server if you haven't already: <a href="https://discord.gg/zx2mg3vfdS" target="_blank">Join Discord</a>.</p>
       <p>2. Open a ticket in the Discord server under the appropriate channel.</p>
-      <p>3. Provide your purchase details, including your order details and email, in the ticket.</p>
+      <p>3. Provide your purchase details, including your order ID and email, in the ticket.</p>
       <p>4. Our team will process your request and deliver your items as soon as possible.</p>
-      <p>If you have any questions, feel free to reach out in our Discord server or dm cranked2!</p>
+      <p>If you have any questions, feel free to reach out in our Discord server or DM cranked2!</p>
     </div>
   </section>
 
@@ -243,5 +244,58 @@
   <footer>
     © 2025 Camo Empire. All rights reserved.
   </footer>
+
+  <script>
+    // Function to get query parameters from URL
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        orderId: params.get('order_id') || 'N/A',
+        product: params.get('product') || 'N/A'
+      };
+    }
+
+    // Function to send order details to Discord webhook
+    async function sendToDiscordWebhook(orderId, product) {
+      const webhookUrl = 'https://discord.com/api/webhooks/1324089991973834854/Jr7-1peOyPAXdi1ATxiu5wxhMAUKLJB4kqlWNS6cnf7f-3lqqaQ8RuXzRBX3t0zg7OZX';
+      const payload = {
+        embeds: [{
+          title: 'New Order',
+          color: 0x9b30ff, // Purple color to match theme
+          fields: [
+            { name: 'Order ID', value: orderId, inline: true },
+            { name: 'Product Purchased', value: product, inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      try {
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          console.error('Failed to send webhook:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error sending webhook:', error);
+      }
+    }
+
+    // Display order details and send to Discord webhook on page load
+    window.addEventListener('load', () => {
+      const { orderId, product } = getQueryParams();
+      document.getElementById('order-id').textContent = orderId;
+      document.getElementById('product-name').textContent = product;
+      if (orderId !== 'N/A' && product !== 'N/A') {
+        sendToDiscordWebhook(orderId, product);
+      }
+    });
+  </script>
 </body>
 </html>
