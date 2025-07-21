@@ -666,7 +666,7 @@
         const orderId = generateOrderId();
         const product = confirmBtn.dataset.product;
         // Append order ID and product to the Stripe link as query parameters
-        onst redirectUrl = `${confirmBtn.dataset.link}?client_reference_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
+        const redirectUrl = `${confirmBtn.dataset.link}?client_reference_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
         window.open(redirectUrl, '_blank');
         modal.style.display = 'none';
         discordCheck.checked = false;
