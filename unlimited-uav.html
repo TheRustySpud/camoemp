@@ -683,15 +683,19 @@
       }
     });
 
-    // Close modal on outside click
-    window.addEventListener('click', (e) => {
+    // Close modal on outside click/touch - works for both desktop and mobile
+    function closeModalOnOutsideClick(e) {
       if (e.target === modal) {
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
-        console.log('Modal closed by outside click');
+        console.log('Modal closed by outside click/touch');
       }
-    });
+    }
+
+    // Add both click and touchstart events
+    window.addEventListener('click', closeModalOnOutsideClick);
+    window.addEventListener('touchstart', closeModalOnOutsideClick);
   </script>
 </body>
 </html>
