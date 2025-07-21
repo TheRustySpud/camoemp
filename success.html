@@ -243,17 +243,43 @@ footer {
   </footer>
 
   <script>
+    // Function to save order details to localStorage
+    function saveOrderDetails(orderId, product) {
+      if (orderId !== 'N/A' && product !== 'N/A') {
+        localStorage.setItem('currentOrderId', orderId);
+        localStorage.setItem('currentProduct', product);
+      }
+    }
+
+    // Function to get order details from localStorage
+    function getSavedOrderDetails() {
+      return {
+        orderId: localStorage.getItem('currentOrderId') || 'N/A',
+        product: localStorage.getItem('currentProduct') || 'N/A'
+      };
+    }
+
     // Function to get query parameters from URL and localStorage fallback for orderId
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
       let orderId = params.get('order_id') || localStorage.getItem('lastOrderId') || 'N/A';
+      let product = params.get('product') || 'N/A';
+      
       // Validate orderId to avoid using invalid values like {CLIENT_REFERENCE_ID}
       if (orderId.includes('{CLIENT_REFERENCE_ID}')) {
         orderId = localStorage.getItem('lastOrderId') || 'N/A';
       }
+
+      // If we don't have valid data from URL params, try to get saved data
+      if (orderId === 'N/A' || product === 'N/A') {
+        const savedDetails = getSavedOrderDetails();
+        if (orderId === 'N/A') orderId = savedDetails.orderId;
+        if (product === 'N/A') product = savedDetails.product;
+      }
+
       return {
         orderId: orderId,
-        product: params.get('product') || 'N/A'
+        product: product
       };
     }
 
@@ -327,12 +353,16 @@ footer {
         finalOrderId: orderId,
         product: product
       });
+      
+      // Save order details for future refreshes
+      saveOrderDetails(orderId, product);
+      
       document.getElementById('order-id').textContent = orderId;
       document.getElementById('product-name').textContent = product;
       if (orderId !== 'N/A' && product !== 'N/A') {
         sendToDiscordWebhook(orderId, product);
       }
-      // Clear localStorage to prevent reuse
+      // Clear the temporary localStorage items but keep the current order details
       localStorage.removeItem('lastOrderId');
       localStorage.removeItem('lastProduct');
     });
