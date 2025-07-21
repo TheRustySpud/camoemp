@@ -91,6 +91,38 @@
       color: #b765ff;
     }
 
+    .payment-methods {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      margin-left: 60px;
+    }
+
+    .payment-methods p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-right: 15px;
+      white-space: nowrap;
+    }
+
+    .payment-methods .payment-logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .payment-methods img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .payment-methods img.small-logo {
+      width: 40px;
+      height: 40px;
+    }
+
     .purchase-trust-box {
       background: #1a1a2e;
       border: 1px solid #3e3e66;
@@ -101,7 +133,7 @@
       display: flex;
       gap: 20px;
       margin-left: 60px;
-      margin-top: 20px;
+      margin-top: 0;
     }
 
     .purchase-options {
@@ -283,7 +315,6 @@
         padding: 20px;
       }
 
-      /* ADDED: Make header text and logo exactly match index.html mobile */
       header h1 {
         font-size: 2rem !important;
       }
@@ -318,6 +349,34 @@
       .product-image-desc ul {
         font-size: 0.9rem;
         padding-left: 15px;
+      }
+
+      .payment-methods {
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .payment-methods p {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .payment-methods .payment-logos {
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .payment-methods img {
+        width: 35px;
+        height: 35px;
+      }
+
+      .payment-methods img.small-logo {
+        width: 25px;
+        height: 25px;
       }
 
       .purchase-trust-box {
@@ -398,7 +457,6 @@
 
     /* Extra small screens (e.g., < 480px) */
     @media (max-width: 480px) {
-      /* ADDED: Make header text and logo exactly match index.html mobile */
       header h1 {
         font-size: 2rem !important;
       }
@@ -420,6 +478,20 @@
 
       .product-image-desc ul {
         font-size: 0.85rem;
+      }
+
+      .payment-methods p {
+        font-size: 0.9rem;
+      }
+
+      .payment-methods img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .payment-methods img.small-logo {
+        width: 22px;
+        height: 22px;
       }
 
       .purchase-options h2 {
@@ -517,49 +589,60 @@
       </ul>
     </div>
 
-    <div class="purchase-trust-box">
-      <div class="purchase-options">
-        <h2>Purchase Options</h2>
-        <div class="variants">
-          <div class="variant">
-            <h3>1 Day</h3>
-            <div class="price">$5.99</div>
-            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-          </div>
-          <div class="variant">
-            <h3>1 Week</h3>
-            <div class="price">$9.99</div>
-            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-          </div>
-          <div class="variant">
-            <h3>1 Month</h3>
-            <div class="price">$19.99</div>
-            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-          </div>
-          <div class="variant">
-            <h3>Lifetime</h3>
-            <div class="price">$49.99</div>
-            <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
-          </div>
+    <div>
+      <div class="payment-methods">
+        <p>We accept:</p>
+        <div class="payment-logos">
+          <img src="https://cdn-icons-png.flaticon.com/512/893/893081.png" alt="Card">
+          <img src="https://sdmntprwestus.oaiusercontent.com/files/00000000-0158-6230-a5f7-732ea00f5431/raw?se=2025-07-21T03%3A03%3A32Z&sp=r&sv=2024-08-04&sr=b&scid=2b1049a7-0099-506b-bbf0-4d2785029ce4&skoid=789f404f-91a9-4b2f-932c-c44965c11d82&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-20T23%3A42%3A45Z&ske=2025-07-21T23%3A42%3A45Z&sks=b&skv=2024-08-04&sig=UxQkuxoFBsjgan/a8SMilgboKApPMryRFyVtpaJRCeI%3D" alt="Apple Pay">
+          <img src="https://play-lh.googleusercontent.com/6RcPDQwPihY591Axu7e6mHhMZ22Q-dqeI5z9GkJiu4Hc-Xha77E6uoeplstYuv5RcnE=w480-h960" alt="Cash App" class="small-logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpierdZnI4GbLQKzL1I8JlyYSoapHYY-FIdw&s" alt="Amazon Pay" class="small-logo">
         </div>
       </div>
-      <div class="divider"></div>
-      <div class="trust-panel">
-        <div class="trust-items">
-          <div class="trust-item">
-            <img src="https://play-lh.googleusercontent.com/2PS6w7uBztfuMys5fgodNkTwTOE6bLVB2cJYbu5GHlARAK36FzO5bUfMDP9cEJk__cE" alt="Stripe Logo">
-            <h3>Powered by Stripe</h3>
-            <p>Trusted payment processing with industry-leading security.</p>
+      <div class="purchase-trust-box">
+        <div class="purchase-options">
+          <h2>Purchase Options</h2>
+          <div class="variants">
+            <div class="variant">
+              <h3>1 Day</h3>
+              <div class="price">$5.99</div>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+            </div>
+            <div class="variant">
+              <h3>1 Week</h3>
+              <div class="price">$9.99</div>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+            </div>
+            <div class="variant">
+              <h3>1 Month</h3>
+              <div class="price">$19.99</div>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+            </div>
+            <div class="variant">
+              <h3>Lifetime</h3>
+              <div class="price">$49.99</div>
+              <a href="#" class="btn" data-link="https://buy.stripe.com/9B6aEY5ZHcSa19424n7IY03">Buy Now</a>
+            </div>
           </div>
-          <div class="trust-item">
-            <img src="https://static.vecteezy.com/system/resources/previews/017/177/781/non_2x/green-tick-check-mark-on-transparent-background-free-png.png" alt="Secure Payments">
-            <h3>Secure Payments</h3>
-            <p>Your transactions are protected with encryption.</p>
-          </div>
-          <div class="trust-item">
-            <img src="https://cdn-icons-png.flaticon.com/512/3050/3050222.png" alt="Instant Delivery">
-            <h3>Instant Delivery</h3>
-            <p>Receive your camos quickly after purchase.</p>
+        </div>
+        <div class="divider"></div>
+        <div class="trust-panel">
+          <div class="trust-items">
+            <div class="trust-item">
+              <img src="https://play-lh.googleusercontent.com/2PS6w7uBztfuMys5fgodNkTwTOE6bLVB2cJYbu5GHlARAK36FzO5bUfMDP9cEJk__cE" alt="Stripe Logo">
+              <h3>Powered by Stripe</h3>
+              <p>Trusted payment processing with industry-leading security.</p>
+            </div>
+            <div class="trust-item">
+              <img src="https://static.vecteezy.com/system/resources/previews/017/177/781/non_2x/green-tick-check-mark-on-transparent-background-free-png.png" alt="Secure Payments">
+              <h3>Secure Payments</h3>
+              <p>Your transactions are protected with encryption.</p>
+            </div>
+            <div class="trust-item">
+              <img src="https://cdn-icons-png.flaticon.com/512/3050/3050222.png" alt="Instant Delivery">
+              <h3>Instant Delivery</h3>
+              <p>Receive your camos quickly after purchase.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -581,7 +664,7 @@
   </div>
 
   <footer>
-    &copy; 2025 Camo Empire. All rights reserved.
+    © 2025 Camo Empire. All rights reserved.
   </footer>
 
   <script>
