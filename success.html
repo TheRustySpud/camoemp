@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You - Camo Empire</title>
+  <link rel="icon" href="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: #0b0b12;
+      color: #e0e0f8;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #3e006a, #5e00aa);
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px #ff66cc;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+    }
+
+    .thank-you-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .thank-you-section img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    .thank-you-section h2 {
+      font-size: 2rem;
+      color: #c084fc;
+      margin-bottom: 10px;
+    }
+
+    .thank-you-section p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .instruction-box {
+      background: #1a1a2e;
+      border: 1px solid #3e3e66;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 600px;
+      width: 90%;
+      text-align: left;
+    }
+
+    .instruction-box h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .instruction-box p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .instruction-box a {
+      color: #b765ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .instruction-box a:hover {
+      color: #d4b5ff;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin: 30px auto;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 10px;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      background: #0f0f1f;
+      padding: 20px;
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2rem !important;
+      }
+
+      header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 0 1px #ff66cc;
+      }
+
+      .thank-you-section {
+        padding: 20px 10px;
+      }
+
+      .thank-you-section img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .thank-you-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .thank-you-section p {
+        font-size: 1rem;
+      }
+
+      .instruction-box {
+        padding: 15px;
+        width: 95%;
+      }
+
+      .instruction-box h3 {
+        font-size: 1.2rem;
+      }
+
+      .instruction-box p {
+        font-size: 0.95rem;
+      }
+
+      .back-btn {
+        font-size: 0.95rem;
+        padding: 15px;
+      }
+    }
+
+    /* Extra small screens (e.g., < 480px) */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem !important;
+      }
+
+      header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 0 1px #ff66cc;
+      }
+
+      .thank-you-section img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .thank-you-section h2 {
+        font-size: 1.3rem;
+      }
+
+      .thank-you-section p {
+        font-size: 0.9rem;
+      }
+
+      .instruction-box h3 {
+        font-size: 1.1rem;
+      }
+
+      .instruction-box p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" alt="Logo">
+    <h1>Camo Empire</h1>
+  </header>
+
+  <section class="thank-you-section">
+    <img src="https://static.vecteezy.com/system/resources/previews/017/177/781/non_2x/green-tick-check-mark-on-transparent-background-free-png.png" alt="Green Checkmark">
+    <h2>Payment Successful!</h2>
+    <p>Thank You for Your Purchase!</p>
+    <div class="instruction-box">
+      <h3>Next Steps</h3>
+      <p>Thank you for choosing Camo Empire! To receive your purchased camos, please follow these steps:</p>
+      <p>1. Join our Discord server if you haven't already: <a href="https://discord.gg/zx2mg3vfdS" target="_blank">Join Discord</a>.</p>
+      <p>2. Open a ticket in the Discord server under the appropriate channel.</p>
+      <p>3. Provide your purchase details, including your order confirmation number, in the ticket.</p>
+      <p>4. Our team will process your request and deliver your camos as soon as possible.</p>
+      <p>If you have any questions, feel free to reach out in our Discord server!</p>
+    </div>
+  </section>
+
+  <a href="index.html" class="back-btn">← Back to Products</a>
+
+  <footer>
+    © 2025 Camo Empire. All rights reserved.
+  </footer>
+</body>
+</html>
