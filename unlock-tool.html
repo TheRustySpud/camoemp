@@ -561,7 +561,7 @@
           <img src="https://cdn-icons-png.flaticon.com/512/893/893081.png" alt="Card">
           <img src="https://i.postimg.cc/g2SjTYgC/temp-Image-VJW248.avif" alt="Apple Pay">
           <img src="https://play-lh.googleusercontent.com/6RcPDQwPihY591Axu7e6mHhMZ22Q-dqeI5z9GkJiu4Hc-Xha77E6uoeplstYuv5RcnE=w480-h960" alt="Cash App" class="small-logo">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpierdZnI4GbLQKzL1I8JlyYSoapHYY-FIdw&s" alt="Amazon Pay" class="small-logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:GCQpierdZnI4GbLQKzL1I8JlyYSoapHYY-FIdw&s" alt="Amazon Pay" class="small-logo">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png" alt="btc" class="crypto">
           <img src="https://s3.coinmarketcap.com/static/img/portraits/630c5fcaf8184351dc5c6ee5.png" alt="ltc" class="crypto">
         </div>
@@ -571,7 +571,7 @@
           <h2>Purchase Options</h2>
           <div class="variants">
             <div class="variant">
-              <h3>1 Day</h3>
+              <h3>Unlock Tool - 1 Day</h3>
               <div class="price">$6</div>
               <a href="#" class="btn" data-link="https://buy.stripe.com/test_aFa8wQ0FnaK2g3Y10j7IY00" data-product="Unlock Tool - 1 Day">Buy Now</a>
             </div>
@@ -654,20 +654,35 @@
         // Store the link and product in confirm button dataset
         confirmBtn.dataset.link = button.dataset.link;
         confirmBtn.dataset.product = button.dataset.product;
+        console.log('Buy Now clicked:', {
+          link: button.dataset.link,
+          product: button.dataset.product
+        });
       });
     });
 
     discordCheck.addEventListener('change', () => {
       confirmBtn.disabled = !discordCheck.checked;
+      console.log('Checkbox changed:', { checked: discordCheck.checked });
     });
 
     confirmBtn.addEventListener('click', () => {
       if (!confirmBtn.disabled && confirmBtn.dataset.link) {
         const orderId = generateOrderId();
         const product = confirmBtn.dataset.product;
+        // Store orderId and product in localStorage as a fallback
+        localStorage.setItem('lastOrderId', orderId);
+        localStorage.setItem('lastProduct', product);
         // Append order ID and product to the Stripe link as query parameters
         const redirectUrl = `${confirmBtn.dataset.link}?client_reference_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
-        window.location.href = redirectUrl; // Changed to same-tab redirect
+        console.log('Redirecting to Stripe Checkout:', {
+          url: redirectUrl,
+          orderId: orderId,
+          product: product,
+          localStorageOrderId: localStorage.getItem('lastOrderId'),
+          localStorageProduct: localStorage.getItem('lastProduct')
+        });
+        window.location.href = redirectUrl; // Same-tab redirect
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
@@ -680,6 +695,7 @@
         modal.style.display = 'none';
         discordCheck.checked = false;
         confirmBtn.disabled = true;
+        console.log('Modal closed by outside click');
       }
     });
   </script>
