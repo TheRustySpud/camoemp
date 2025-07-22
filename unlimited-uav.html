@@ -638,7 +638,6 @@
 
     // Modal logic for purchase confirmation
     const modal = document.getElementById('purchaseModal');
-    const discordCheck = document.getElementById('discordCheck');
     const confirmBtn = document.getElementById('confirmBtn');
 
     document.querySelectorAll('.btn[data-link]').forEach(button => {
@@ -655,13 +654,8 @@
       });
     });
 
-    discordCheck.addEventListener('change', () => {
-      confirmBtn.disabled = !discordCheck.checked;
-      console.log('Checkbox changed:', { checked: discordCheck.checked });
-    });
-
     confirmBtn.addEventListener('click', () => {
-      if (!confirmBtn.disabled && confirmBtn.dataset.link) {
+      if (confirmBtn.dataset.link) {
         const orderId = generateOrderId();
         const product = confirmBtn.dataset.product;
         // Store orderId and product in localStorage as a fallback
@@ -678,8 +672,6 @@
         });
         window.location.href = redirectUrl; // Same-tab redirect
         modal.style.display = 'none';
-        discordCheck.checked = false;
-        confirmBtn.disabled = true;
       }
     });
 
@@ -687,8 +679,6 @@
     function closeModalOnOutsideClick(e) {
       if (e.target === modal) {
         modal.style.display = 'none';
-        discordCheck.checked = false;
-        confirmBtn.disabled = true;
         console.log('Modal closed by outside click/touch');
       }
     }
