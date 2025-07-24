@@ -19,30 +19,30 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-      background: #0b0b12; /* Fallback background color to prevent white flash */
-      will-change: opacity; /* Optimize for fade transitions */
+      position: relative; /* Ensure body is positioned for z-index stacking */
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
+    /* Video background styling */
     #background-video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      object-fit: cover; /* Ensures video covers the entire background */
+      z-index: -1; /* Place video behind all other content */
     }
 
+    /* Semi-transparent overlay for text readability */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: -1;
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay with 40% opacity */
+      z-index: -1; /* Above video, below content */
     }
 
     header {
@@ -54,7 +54,7 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      z-index: 1;
+      z-index: 1; /* Ensure header is above video and overlay */
     }
 
     header img {
@@ -77,7 +77,7 @@
       align-items: flex-start;
       padding: 40px 20px;
       gap: 40px;
-      z-index: 1;
+      z-index: 1; /* Ensure content is above video and overlay */
     }
 
     .product-image-desc {
@@ -157,7 +157,7 @@
     }
 
     .purchase-trust-box {
-      background: rgba(26, 26, 46, 0.9);
+      background: rgba(26, 26, 46, 0.9); /* Slightly transparent to blend with video */
       border: 1px solid #3e3e66;
       border-radius: 10px;
       padding: 20px;
@@ -187,7 +187,7 @@
     }
 
     .variant {
-      background: rgba(42, 42, 64, 0.9);
+      background: rgba(42, 42, 64, 0.9); /* Slightly transparent to blend with video */
       border: 1px solid #4b4b6f;
       border-radius: 8px;
       padding: 12px;
@@ -270,7 +270,7 @@
       text-decoration: none;
       font-size: 1rem;
       padding: 10px;
-      z-index: 1;
+      z-index: 1; /* Ensure button is above video and overlay */
     }
 
     .back-btn:hover {
@@ -279,11 +279,11 @@
 
     footer {
       text-align: center;
-      background: rgba(15, 15, 31, 0.9);
+      background: rgba(15, 15, 31, 0.9); /* Slightly transparent to blend with video */
       padding: 20px;
       color: #666;
       font-size: 0.85rem;
-      z-index: 1;
+      z-index: 1; /* Ensure footer is above video and overlay */
     }
 
     .modal {
@@ -296,11 +296,11 @@
       background: rgba(0, 0, 0, 0.8);
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      z-index: 1000; /* Ensure modal is above video and overlay */
     }
 
     .modal-content {
-      background: rgba(26, 26, 46, 0.9);
+      background: rgba(26, 26, 46, 0.9); /* Slightly transparent to blend with video */
       padding: 20px;
       border-radius: 10px;
       text-align: center;
@@ -488,17 +488,6 @@
         font-size: 0.95rem;
         padding: 15px;
       }
-
-      /* Mobile fallback for video */
-      #background-video {
-        display: none;
-      }
-
-      body {
-        background: linear-gradient(45deg, #1e1e3a, #3e006a, #2a1a4a, #5e00aa);
-        background-size: 400% 400%;
-        animation: gradientAnimation 15s ease infinite;
-      }
     }
 
     /* Extra small screens (e.g., < 480px) */
@@ -570,19 +559,15 @@
         font-size: 0.85rem;
       }
     }
-
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
   </style>
 </head>
 <body>
-  <video id="background-video" autoplay loop muted playsinline preload="auto" poster="https://via.placeholder.com/1920x1080/0b0b12/0b0b12">
+  <!-- Video background -->
+  <video id="background-video" autoplay loop muted playsinline>
     <source src="https://videos.pexels.com/video-files/9665235/9665235-hd_1920_1080_25fps.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+  <!-- Overlay for text readability -->
   <div class="overlay"></div>
 
   <header>
@@ -728,6 +713,7 @@
       button.addEventListener('click', (e) => {
         e.preventDefault();
         modal.style.display = 'flex';
+        // Store the link and product in confirm button dataset
         confirmBtn.dataset.link = button.dataset.link;
         confirmBtn.dataset.product = button.dataset.product;
         console.log('Buy Now clicked:', {
@@ -741,8 +727,10 @@
       if (confirmBtn.dataset.link) {
         const orderId = generateOrderId();
         const product = confirmBtn.dataset.product;
+        // Store orderId and product in localStorage as a fallback
         localStorage.setItem('lastOrderId', orderId);
         localStorage.setItem('lastProduct', product);
+        // Append order ID and product to the Stripe link as query parameters
         const redirectUrl = `${confirmBtn.dataset.link}?client_reference_id=${encodeURIComponent(orderId)}&product=${encodeURIComponent(product)}`;
         console.log('Redirecting to Stripe Checkout:', {
           url: redirectUrl,
@@ -751,17 +739,12 @@
           localStorageOrderId: localStorage.getItem('lastOrderId'),
           localStorageProduct: localStorage.getItem('lastProduct')
         });
-        // Add fade-out effect to reduce flash perception
-        document.body.style.transition = 'opacity 0.3s ease';
-        document.body.style.opacity = '0';
-        setTimeout(() => {
-          window.location.href = redirectUrl;
-          modal.style.display = 'none';
-        }, 300);
+        window.location.href = redirectUrl; // Same-tab redirect
+        modal.style.display = 'none';
       }
     });
 
-    // Close modal on outside click/touch
+    // Close modal on outside click/touch - works for both desktop and mobile
     function closeModalOnOutsideClick(e) {
       if (e.target === modal) {
         modal.style.display = 'none';
@@ -769,6 +752,7 @@
       }
     }
 
+    // Add both click and touchstart events
     window.addEventListener('click', closeModalOnOutsideClick);
     window.addEventListener('touchstart', closeModalOnOutsideClick);
   </script>
