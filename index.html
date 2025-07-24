@@ -15,8 +15,34 @@
     }
 
     body {
-      background: #0b0b12;
       color: #e0e0f8;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative; /* Ensure body is positioned for z-index stacking */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Video background styling */
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures video covers the entire background */
+      z-index: -1; /* Place video behind all other content */
+    }
+
+    /* Semi-transparent overlay for text readability */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay with 40% opacity */
+      z-index: -1; /* Above video, below content */
     }
 
     header {
@@ -29,6 +55,7 @@
       align-items: center;
       gap: 15px;
       flex-wrap: wrap;
+      z-index: 1; /* Ensure header is above video and overlay */
     }
 
     header img {
@@ -51,7 +78,7 @@
       position: relative;
       padding: 80px 20px;
       text-align: center;
-      z-index: 1;
+      z-index: 1; /* Keep original z-index */
     }
 
     .hero::before {
@@ -60,6 +87,18 @@
       inset: 0;
       background: rgba(18, 0, 40, 0.8);
       z-index: -1;
+    }
+
+    /* Divider to blend hero GIF with body video */
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -20px; /* Position at bottom of hero section */
+      left: 0;
+      width: 100%;
+      height: 20px; /* Height of the divider */
+      background: linear-gradient(to bottom, rgba(18, 0, 40, 0.8), rgba(0, 0, 0, 0.4)); /* Gradient from hero to body overlay */
+      z-index: 0; /* Above video and overlay, below content */
     }
 
     .hero h2 {
@@ -90,7 +129,7 @@
     }
 
     .stat {
-      background: #24004b;
+      background: rgba(36, 0, 75, 0.9); /* Semi-transparent to blend with video */
       border: 1px solid #5e2a9c;
       padding: 25px 25px;
       border-radius: 12px;
@@ -117,6 +156,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       padding: 50px 30px;
+      z-index: 1; /* Ensure products are above video and overlay */
     }
 
     .product-link {
@@ -125,7 +165,7 @@
     }
 
     .product {
-      background: #1a1a2e;
+      background: rgba(26, 26, 46, 0.9); /* Semi-transparent to blend with video */
       border: 1px solid #3e3e66;
       border-radius: 15px;
       padding: 25px;
@@ -181,10 +221,11 @@
 
     footer {
       text-align: center;
-      background: #0f0f1f;
+      background: rgba(15, 15, 31, 0.9); /* Semi-transparent to blend with video */
       padding: 20px;
       color: #666;
       font-size: 0.85rem;
+      z-index: 1; /* Ensure footer is above video and overlay */
     }
 
     /* Mobile adjustments */
@@ -225,10 +266,21 @@
         padding: 8px 16px;
         font-size: 0.9rem;
       }
+
+      .hero::after {
+        height: 15px; /* Slightly smaller divider for mobile */
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Video background -->
+  <video id="background-video" autoplay loop muted playsinline>
+    <source src="https://videos.pexels.com/video-files/9665235/9665235-hd_1920_1080_25fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <!-- Overlay for text readability -->
+  <div class="overlay"></div>
 
   <header>
     <img src="https://images-ext-1.discordapp.net/external/XMhfFgTtFdf90ucYWmG0mP-Xrv1WaTtMvPYgno6FaA0/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1302640777968484362/04cef4bcfbb925dcf32b620036c268e1.png?width=256&height=256" alt="Logo">
@@ -296,7 +348,6 @@
       </div>
     </a>
     <!--
-
     <a href="unlimited-uav.html" class="product-link">
       <div class="product">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThvPW3HsfNHdZmmAf3rFIjAxMeeahmV7y2wA&s" alt="Steam accounts">
